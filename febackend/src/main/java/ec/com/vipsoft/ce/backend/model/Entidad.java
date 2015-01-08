@@ -21,11 +21,79 @@ public class Entidad implements Serializable {
 	@Column(name = "version")
 	private int version;
 
+	
 	@Column
 	private String razonSocial;
 
 	@Column
 	private String direccion;
+	
+	private boolean facturaEnPruebas;
+	private boolean notaCreditoEnPruebas;
+	private boolean notaDebitioEnPruebas;
+	private boolean guiaRemisionEnPruebas;
+	private boolean comprobanteRetencionEnPruebas;
+	
+	private Integer secuenciacafactura;
+	private Integer secuenciacanotadebito;
+	private Integer secuenciacanotacredito;
+	private Integer secuenciacaguiaremision;
+	private Integer secuenciacaretencion;
+	public Integer siguienteCAFactura(){
+		return secuenciacafactura++;	
+	}
+	public Integer siguienteCANotaDebito(){
+		return secuenciacanotadebito++;		
+	}
+	public Integer siguienteCANotaCredito(){
+		return secuenciacanotacredito++;		
+	}
+	public Integer siguienteCAGuiaRemision(){
+		return secuenciacaguiaremision++;		
+	}
+	public Integer siguienteCARetencion(){
+		return secuenciacaretencion++;		
+	}
+
+	public Integer getSecuenciacafactura() {
+		return secuenciacafactura;
+	}
+
+	public void setSecuenciacafactura(Integer secuenciacafactura) {
+		this.secuenciacafactura = secuenciacafactura;
+	}
+
+	public Integer getSecuenciacanotadebito() {
+		return secuenciacanotadebito;
+	}
+
+	public void setSecuenciacanotadebito(Integer secuenciacanotadebito) {
+		this.secuenciacanotadebito = secuenciacanotadebito;
+	}
+
+	public Integer getSecuenciacanotacredito() {
+		return secuenciacanotacredito;
+	}
+
+	public void setSecuenciacanotacredito(Integer secuenciacanotacredito) {
+		this.secuenciacanotacredito = secuenciacanotacredito;
+	}
+
+	public Integer getSecuenciacaguiaremision() {
+		return secuenciacaguiaremision;
+	}
+
+	public void setSecuenciacaguiaremision(Integer secuenciacaguiaremision) {
+		this.secuenciacaguiaremision = secuenciacaguiaremision;
+	}
+
+	public Integer getSecuenciacaretencion() {
+		return secuenciacaretencion;
+	}
+
+	public void setSecuenciacaretencion(Integer secuenciacaretencion) {
+		this.secuenciacaretencion = secuenciacaretencion;
+	}
 
 	public Long getId() {
 		return this.id;
@@ -96,4 +164,46 @@ public class Entidad implements Serializable {
 			result += ", direccion: " + direccion;
 		return result;
 	}
+
+	public boolean isFacturaEnPruebas() {
+		return facturaEnPruebas;
+	}
+
+	public void setFacturaEnPruebas(boolean facturaEnPruebas) {
+		this.facturaEnPruebas = facturaEnPruebas;
+	}
+
+	public boolean isNotaCreditoEnPruebas() {
+		return notaCreditoEnPruebas;
+	}
+
+	public void setNotaCreditoEnPruebas(boolean notaCreditoEnPruebas) {
+		this.notaCreditoEnPruebas = notaCreditoEnPruebas;
+	}
+
+	public boolean isNotaDebitioEnPruebas() {
+		return notaDebitioEnPruebas;
+	}
+
+	public void setNotaDebitioEnPruebas(boolean notaDebitioEnPruebas) {
+		this.notaDebitioEnPruebas = notaDebitioEnPruebas;
+	}
+
+	public boolean isGuiaRemisionEnPruebas() {
+		return guiaRemisionEnPruebas;
+	}
+
+	public void setGuiaRemisionEnPruebas(boolean guiaRemisionEnPruebas) {
+		this.guiaRemisionEnPruebas = guiaRemisionEnPruebas;
+	}
+
+	public boolean isComprobanteRetencionEnPruebas() {
+		return comprobanteRetencionEnPruebas;
+	}
+
+	public void setComprobanteRetencionEnPruebas(
+			boolean comprobanteRetencionEnPruebas) {
+		this.comprobanteRetencionEnPruebas = comprobanteRetencionEnPruebas;
+	}
+	
 }

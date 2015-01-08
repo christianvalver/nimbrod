@@ -15,27 +15,27 @@ import java.text.SimpleDateFormat;
 public class GeneradorClaveAcceso implements Serializable {
 	private static final long serialVersionUID = -1L;
 
-	public String generarClaveAccesoFactura(String ruc, Integer sucursal,Integer puntoEmision, Integer secuencia, boolean enPruebas,int numerocomprobante, int secuenciaca) {
-		return generarClaveAcceso(ruc, sucursal, puntoEmision, secuencia,enPruebas, numerocomprobante, secuenciaca, "01");
+	public String generarClaveAccesoFactura(String ruc, Integer sucursal,Integer puntoEmision, boolean enPruebas,int numerocomprobante, int secuenciaca) {
+		return generarClaveAcceso(ruc, sucursal, puntoEmision, enPruebas, numerocomprobante, secuenciaca, "01");
 	}
 
-	public String generarClaveAccesoNotaCredito(String ruc, Integer sucursal,Integer puntoEmision, Integer secuencia, boolean enPruebas,int numerocomprobante, int secuenciaca) {
-		return generarClaveAcceso(ruc, sucursal, puntoEmision, secuencia,enPruebas, numerocomprobante, secuenciaca, "04");
+	public String generarClaveAccesoNotaCredito(String ruc, Integer sucursal,Integer puntoEmision, boolean enPruebas,int numerocomprobante, int secuenciaca) {
+		return generarClaveAcceso(ruc, sucursal, puntoEmision, enPruebas, numerocomprobante, secuenciaca, "04");
 	}
 
-	public String generarClaveAccesoNotaDebito(String ruc, Integer sucursal,Integer puntoEmision, Integer secuencia, boolean enPruebas,	int numerocomprobante, int secuenciaca) {
-		return generarClaveAcceso(ruc, sucursal, puntoEmision, secuencia,enPruebas, numerocomprobante, secuenciaca, "05");
+	public String generarClaveAccesoNotaDebito(String ruc, Integer sucursal,Integer puntoEmision, boolean enPruebas,	int numerocomprobante, int secuenciaca) {
+		return generarClaveAcceso(ruc, sucursal, puntoEmision, enPruebas, numerocomprobante, secuenciaca, "05");
 	}
 
-	public String generarClaveAccesoGuiaRemision(String ruc, Integer sucursal,Integer puntoEmision, Integer secuencia, boolean enPruebas,int numerocomprobante, int secuenciaca) {
-		return generarClaveAcceso(ruc, sucursal, puntoEmision, secuencia,enPruebas, numerocomprobante, secuenciaca, "06");
+	public String generarClaveAccesoGuiaRemision(String ruc, Integer sucursal,Integer puntoEmision,  boolean enPruebas,int numerocomprobante, int secuenciaca) {
+		return generarClaveAcceso(ruc, sucursal, puntoEmision, enPruebas, numerocomprobante, secuenciaca, "06");
 	}
 
-	public String generarClaveAccesoComprobanteRetencion(String ruc,Integer sucursal, Integer puntoEmision, Integer secuencia,	boolean enPruebas, int numerocomprobante, int secuenciaca) {
-		return generarClaveAcceso(ruc, sucursal, puntoEmision, secuencia,enPruebas, numerocomprobante, secuenciaca, "07");
+	public String generarClaveAccesoComprobanteRetencion(String ruc,Integer sucursal, Integer puntoEmision, boolean enPruebas, int numerocomprobante, int secuenciaca) {
+		return generarClaveAcceso(ruc, sucursal, puntoEmision, enPruebas, numerocomprobante, secuenciaca, "07");
 	}
 
-	private String generarClaveAcceso(@Size(min=13,max=13) String ruc, Integer sucursal,Integer puntoEmision, Integer secuencia, boolean enPruebas,	int numerocomprobante, int secuenciaca, String tipoDocumento) {
+	private String generarClaveAcceso(@Size(min=13,max=13) String ruc, Integer sucursal,Integer puntoEmision,  boolean enPruebas,	int numerocomprobante, int secuenciaca, String tipoDocumento) {
 		StringBuilder sb = new StringBuilder(representacionTextoFechaActual());
 		sb.append(tipoDocumento);
 		sb.append(ruc);
