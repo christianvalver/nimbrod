@@ -26,6 +26,8 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 	EntityManager em;
 	@EJB
 	GeneradorClaveAcceso generadorReal;
+	@EJB
+	AdministradorContingencia administracionContingencia;
    private static final long serialVersionUID = -1L;
   
    
@@ -47,8 +49,14 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 			   for(PuntoEmision ptoe:_sucursal.getPuntosEmision()){
 				   if(ptoe.getId().longValue()==(long)ptoEmision){
 					   PuntoEmision _emision=em.find(PuntoEmision.class, ptoe.getId());
-					   int _secuencia=_emision.siguienteSecuenciaRetencion();					   
-					   retorno.append( generadorReal.generarClaveAccesoFactura(ruc, sucursal, ptoEmision,entidad.isFacturaEnPruebas(), _secuencia,entidad.siguienteCARetencion()));
+					   int _secuencia=_emision.siguienteSecuenciaRetencion();	
+					   String claveGenerada=generadorReal.generarClaveAccesoFactura(ruc, sucursal, ptoEmision,entidad.isFacturaEnPruebas(), _secuencia,entidad.siguienteCARetencion());
+					   if(administracionContingencia.estamosEnContingenciaProgramada()){
+						   retorno.append(generadorReal.generarClaveAccesoContingencia(claveGenerada));
+					   }else{
+						   retorno.append(claveGenerada);   
+					   }
+					   
 					   break;
 				   }
 			   }
@@ -77,8 +85,13 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 			   for(PuntoEmision ptoe:_sucursal.getPuntosEmision()){
 				   if(ptoe.getId().longValue()==(long)ptoEmision){
 					   PuntoEmision _emision=em.find(PuntoEmision.class, ptoe.getId());
-					   int _secuencia=_emision.siguienteSecuenciaGuiaRemision();					   
-					   retorno.append( generadorReal.generarClaveAccesoFactura(ruc, sucursal, ptoEmision,entidad.isFacturaEnPruebas(), _secuencia,entidad.siguienteCAGuiaRemision()));
+					   int _secuencia=_emision.siguienteSecuenciaGuiaRemision();					   					   
+					   String claveGenerada= generadorReal.generarClaveAccesoFactura(ruc, sucursal, ptoEmision,entidad.isFacturaEnPruebas(), _secuencia,entidad.siguienteCAGuiaRemision());
+					   if(administracionContingencia.estamosEnContingenciaProgramada()){
+						   retorno.append(generadorReal.generarClaveAccesoContingencia(claveGenerada));
+					   }else{
+						   retorno.append(claveGenerada);   
+					   }
 					   break;
 				   }
 			   }
@@ -107,7 +120,12 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 				   if(ptoe.getId().longValue()==(long)ptoEmision){
 					   PuntoEmision _emision=em.find(PuntoEmision.class, ptoe.getId());
 					   int _secuencia=_emision.siguienteSecuenciaNotaCredito();					   
-					   retorno.append( generadorReal.generarClaveAccesoNotaCredito(ruc, sucursal, ptoEmision,entidad.isFacturaEnPruebas(), _secuencia,entidad.siguienteCANotaCredito()));
+					   String claveGenerada= generadorReal.generarClaveAccesoNotaCredito(ruc, sucursal, ptoEmision,entidad.isFacturaEnPruebas(), _secuencia,entidad.siguienteCANotaCredito());
+					   if(administracionContingencia.estamosEnContingenciaProgramada()){
+						   retorno.append(generadorReal.generarClaveAccesoContingencia(claveGenerada));
+					   }else{
+						   retorno.append(claveGenerada);   
+					   }
 					   break;
 				   }
 			   }
@@ -140,7 +158,12 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 				   if(ptoe.getId().longValue()==(long)ptoEmision){
 					   PuntoEmision _emision=em.find(PuntoEmision.class, ptoe.getId());
 					   int _secuencia=_emision.siguienteSecuenciaNotaDebito();					   
-					   retorno.append( generadorReal.generarClaveAccesoNotaDebito(ruc, sucursal, ptoEmision,entidad.isNotaDebitioEnPruebas(), _secuencia,entidad.siguienteCANotaDebito()));
+					   String claveGenerada=generadorReal.generarClaveAccesoNotaDebito(ruc, sucursal, ptoEmision,entidad.isNotaDebitioEnPruebas(), _secuencia,entidad.siguienteCANotaDebito());
+					   if(administracionContingencia.estamosEnContingenciaProgramada()){
+						   retorno.append(generadorReal.generarClaveAccesoContingencia(claveGenerada));
+					   }else{
+						   retorno.append(claveGenerada);   
+					   }
 					   break;
 				   }
 			   }
@@ -169,7 +192,12 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 				   if(ptoe.getId().longValue()==(long)ptoEmision){
 					   PuntoEmision _emision=em.find(PuntoEmision.class, ptoe.getId());
 					   int _secuencia=_emision.siguienteSecuenciaFactura();					   
-					   retorno.append( generadorReal.generarClaveAccesoFactura(ruc, sucursal, ptoEmision,entidad.isFacturaEnPruebas(), _secuencia,entidad.siguienteCAFactura()));
+					   String claveGenerada=generadorReal.generarClaveAccesoFactura(ruc, sucursal, ptoEmision,entidad.isFacturaEnPruebas(), _secuencia,entidad.siguienteCAFactura());
+					   if(administracionContingencia.estamosEnContingenciaProgramada()){
+						   retorno.append(generadorReal.generarClaveAccesoContingencia(claveGenerada));
+					   }else{
+						   retorno.append(claveGenerada);   
+					   }
 					   break;
 				   }
 			   }

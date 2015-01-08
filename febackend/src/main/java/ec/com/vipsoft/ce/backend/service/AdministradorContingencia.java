@@ -46,7 +46,7 @@ public class AdministradorContingencia {
         }                
     }
     private static final Logger LOG = Logger.getLogger(AdministradorContingencia.class.getName());
-    public boolean estamosEnContingencia() {
+    public boolean estamosEnContingenciaProgramada() {
         boolean retorno = false;
         Query q = em.createQuery("select c from CalendarioIndisponibilidad c where c.terminado=false");
         List<CalendarioIndisponibilidad> listado = q.getResultList();
