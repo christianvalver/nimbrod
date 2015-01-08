@@ -7,6 +7,7 @@ import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import ec.com.vipsoft.ce.backend.model.Entidad;
@@ -31,7 +32,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
    private static final long serialVersionUID = -1L;
   
    
-   public String generarClaveAccesoRetencion(@Size(max=13,min=13)String ruc,Integer sucursal,Integer ptoEmision){
+   public String generarClaveAccesoRetencion(@Pattern(regexp = "[0-9]{13,13}")String ruc,Integer sucursal,Integer ptoEmision){
 	   StringBuilder retorno=new StringBuilder();
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
@@ -67,7 +68,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 	return retorno.toString();   
    }
    
-   public String generarClaveAccesoGuiaRemision(@Size(max=13,min=13)String ruc,Integer sucursal,Integer ptoEmision){
+   public String generarClaveAccesoGuiaRemision(@Pattern(regexp = "[0-9]{13,13}")String ruc,Integer sucursal,Integer ptoEmision){
 	   StringBuilder retorno=new StringBuilder();
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
@@ -101,7 +102,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 	   }		  	  
 	return retorno.toString();   
    }
-   public String generarClaveAccesoNotaCredito(@Size(max=13,min=13)String ruc,Integer sucursal,Integer ptoEmision){
+   public String generarClaveAccesoNotaCredito(@Pattern(regexp = "[0-9]{13,13}")String ruc,Integer sucursal,Integer ptoEmision){
 	   StringBuilder retorno=new StringBuilder();
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
@@ -139,7 +140,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
    
    
    
-   public String generarClaveAccesoNotaDebito(@Size(max=13,min=13)String ruc,Integer sucursal,Integer ptoEmision){
+   public String generarClaveAccesoNotaDebito(@Pattern(regexp = "[0-9]{13,13}")String ruc,Integer sucursal,Integer ptoEmision){
 	   StringBuilder retorno=new StringBuilder();
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
@@ -173,7 +174,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 	   }		  	  
 	return retorno.toString();   
    }
-   public String generarClaveAccesoFactura(@Size(max=13,min=13)String ruc,Integer sucursal,Integer ptoEmision){
+   public String generarClaveAccesoFactura(@Pattern(regexp = "[0-9]{13,13}")String ruc,Integer sucursal,Integer ptoEmision){
 	   StringBuilder retorno=new StringBuilder();
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
@@ -207,7 +208,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 	   }		  	  
 	return retorno.toString();   
    }
-   public String regenerarClaveAccesoContingencia(String claveAccesoNormal){
+   public String regenerarClaveAccesoContingencia(@Pattern(regexp = "[0-9]{49,49}")String claveAccesoNormal){
 	   return generadorReal.generarClaveAccesoContingencia(claveAccesoNormal);
    }
 }
