@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.validation.constraints.Size;
-import javax.ws.rs.Produces;
 
 import ec.com.vipsoft.ce.backend.model.Entidad;
 import ec.com.vipsoft.ce.backend.model.PuntoEmision;

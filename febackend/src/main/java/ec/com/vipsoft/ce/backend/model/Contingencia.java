@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +30,8 @@ public class Contingencia implements Serializable
    private boolean usado;
    @Temporal(TemporalType.TIMESTAMP)	
    private Date fechaUso;
-   
+   @ManyToOne
+   private Entidad entidad;
    public boolean isUsado() {
 	return usado;
 }
@@ -105,4 +107,14 @@ public String getId()
       result = prime * result + ((id == null) ? 0 : id.hashCode());
       return result;
    }
+
+public Entidad getEntidad() {
+	return entidad;
+}
+
+public void setEntidad(Entidad entidad) {
+	this.entidad = entidad;
+}
+
+
 }
