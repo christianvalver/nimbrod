@@ -1,38 +1,34 @@
 package ec.com.vipsoft.ce.backend.service;
 
-import javax.ejb.Stateless;
-import javax.ejb.LocalBean;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
 import java.io.Serializable;
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 
 @Stateless
 @LocalBean
 public class GeneradorClaveAcceso implements Serializable {
 	private static final long serialVersionUID = -1L;
 
-	public String generarClaveAccesoFactura(@Pattern(regexp = "[0-9]{13,13}")String ruc, Integer sucursal,Integer puntoEmision, boolean enPruebas,int numerocomprobante, int secuenciaca) {
+	public String generarClaveAccesoFactura(String ruc, Integer sucursal,Integer puntoEmision, boolean enPruebas,int numerocomprobante, int secuenciaca) {
 		return generarClaveAcceso(ruc, sucursal, puntoEmision, enPruebas, numerocomprobante, secuenciaca, "01");
 	}
 
-	public String generarClaveAccesoNotaCredito(@Pattern(regexp = "[0-9]{13,13}")String ruc, Integer sucursal,Integer puntoEmision, boolean enPruebas,int numerocomprobante, int secuenciaca) {
+	public String generarClaveAccesoNotaCredito(String ruc, Integer sucursal,Integer puntoEmision, boolean enPruebas,int numerocomprobante, int secuenciaca) {
 		return generarClaveAcceso(ruc, sucursal, puntoEmision, enPruebas, numerocomprobante, secuenciaca, "04");
 	}
 
-	public String generarClaveAccesoNotaDebito(@Pattern(regexp = "[0-9]{13,13}")String ruc, Integer sucursal,Integer puntoEmision, boolean enPruebas,	int numerocomprobante, int secuenciaca) {
+	public String generarClaveAccesoNotaDebito(String ruc, Integer sucursal,Integer puntoEmision, boolean enPruebas,	int numerocomprobante, int secuenciaca) {
 		return generarClaveAcceso(ruc, sucursal, puntoEmision, enPruebas, numerocomprobante, secuenciaca, "05");
 	}
 
-	public String generarClaveAccesoGuiaRemision(@Pattern(regexp = "[0-9]{13,13}")String ruc, Integer sucursal,Integer puntoEmision,  boolean enPruebas,int numerocomprobante, int secuenciaca) {
+	public String generarClaveAccesoGuiaRemision(String ruc, Integer sucursal,Integer puntoEmision,  boolean enPruebas,int numerocomprobante, int secuenciaca) {
 		return generarClaveAcceso(ruc, sucursal, puntoEmision, enPruebas, numerocomprobante, secuenciaca, "06");
 	}
 
-	public String generarClaveAccesoComprobanteRetencion(@Pattern(regexp = "[0-9]{13,13}")String ruc,Integer sucursal, Integer puntoEmision, boolean enPruebas, int numerocomprobante, int secuenciaca) {
+	public String generarClaveAccesoComprobanteRetencion(String ruc,Integer sucursal, Integer puntoEmision, boolean enPruebas, int numerocomprobante, int secuenciaca) {
 		return generarClaveAcceso(ruc, sucursal, puntoEmision, enPruebas, numerocomprobante, secuenciaca, "07");
 	}
 

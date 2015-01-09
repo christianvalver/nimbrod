@@ -1,21 +1,19 @@
 package ec.com.vipsoft.ce.backend.service;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import ec.com.vipsoft.ce.backend.model.Entidad;
 import ec.com.vipsoft.ce.backend.model.PuntoEmision;
 import ec.com.vipsoft.ce.backend.model.Sucursal;
-
-import java.io.Serializable;
-import java.util.List;
 
 @Stateless
 @LocalBean
@@ -32,7 +30,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
    private static final long serialVersionUID = -1L;
   
    
-   public String generarClaveAccesoRetencion(@Pattern(regexp = "[0-9]{13,13}")String ruc,Integer sucursal,Integer ptoEmision){
+   public String generarClaveAccesoRetencion(String ruc,Integer sucursal,Integer ptoEmision){
 	   StringBuilder retorno=new StringBuilder();
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
@@ -68,7 +66,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 	return retorno.toString();   
    }
    
-   public String generarClaveAccesoGuiaRemision(@Pattern(regexp = "[0-9]{13,13}")String ruc,Integer sucursal,Integer ptoEmision){
+   public String generarClaveAccesoGuiaRemision(String ruc,Integer sucursal,Integer ptoEmision){
 	   StringBuilder retorno=new StringBuilder();
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
@@ -102,7 +100,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 	   }		  	  
 	return retorno.toString();   
    }
-   public String generarClaveAccesoNotaCredito(@Pattern(regexp = "[0-9]{13,13}")String ruc,Integer sucursal,Integer ptoEmision){
+   public String generarClaveAccesoNotaCredito(String ruc,Integer sucursal,Integer ptoEmision){
 	   StringBuilder retorno=new StringBuilder();
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
@@ -140,7 +138,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
    
    
    
-   public String generarClaveAccesoNotaDebito(@Pattern(regexp = "[0-9]{13,13}")String ruc,Integer sucursal,Integer ptoEmision){
+   public String generarClaveAccesoNotaDebito(String ruc,Integer sucursal,Integer ptoEmision){
 	   StringBuilder retorno=new StringBuilder();
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
@@ -174,7 +172,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 	   }		  	  
 	return retorno.toString();   
    }
-   public String generarClaveAccesoFactura(@Pattern(regexp = "[0-9]{13,13}")String ruc,Integer sucursal,Integer ptoEmision){
+   public String generarClaveAccesoFactura(String ruc,Integer sucursal,Integer ptoEmision){
 	   StringBuilder retorno=new StringBuilder();
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
@@ -208,7 +206,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 	   }		  	  
 	return retorno.toString();   
    }
-   public String regenerarClaveAccesoContingencia(@Pattern(regexp = "[0-9]{49,49}")String claveAccesoNormal){
+   public String regenerarClaveAccesoContingencia(String claveAccesoNormal){
 	   return generadorReal.generarClaveAccesoContingencia(claveAccesoNormal);
    }
 }

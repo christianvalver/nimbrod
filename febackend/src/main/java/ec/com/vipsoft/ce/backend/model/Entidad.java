@@ -33,7 +33,8 @@ public class Entidad implements Serializable {
 	private boolean notaDebitioEnPruebas;
 	private boolean guiaRemisionEnPruebas;
 	private boolean comprobanteRetencionEnPruebas;
-	
+	private String ruc;
+	private String nombreComercial;
 	private Integer secuenciacafactura;
 	private Integer secuenciacanotadebito;
 	private Integer secuenciacanotacredito;
@@ -63,6 +64,18 @@ public class Entidad implements Serializable {
 		this.secuenciacafactura = secuenciacafactura;
 	}
 
+	public String getRuc() {
+		return ruc;
+	}
+	public void setRuc(String ruc) {
+		this.ruc = ruc;
+	}
+	public String getNombreComercial() {
+		return nombreComercial;
+	}
+	public void setNombreComercial(String nombreComercial) {
+		this.nombreComercial = nombreComercial;
+	}
 	public Integer getSecuenciacanotadebito() {
 		return secuenciacanotadebito;
 	}
