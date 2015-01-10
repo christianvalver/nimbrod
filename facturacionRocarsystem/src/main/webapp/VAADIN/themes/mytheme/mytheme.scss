@@ -32,4 +32,17 @@
 @mixin mytheme {
   @include valo;
   // Insert your own theme rules here
+  
+  .v-vertical > .v-spacing {
+    height: 10px;
+}
+ 
+ .v-horizontal > .v-spacing {
+    width: 8px;
+}
+ .mymargins.v-margin-left   {padding-left:   10px;}
+.mymargins.v-margin-right  {padding-right:  10px;}
+.mymargins.v-margin-top    {padding-top:    20px;}
+.mymargins.v-margin-bottom {padding-bottom: 60px;} 
+  
 }

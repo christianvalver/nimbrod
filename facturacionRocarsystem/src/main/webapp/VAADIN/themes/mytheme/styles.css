@@ -12075,3 +12075,27 @@ div.v-layout.v-horizontal.v-widget {
 	width: 19px;
 	overflow: hidden;
 }
+
+.mytheme .v-vertical > .v-spacing {
+	height: 10px;
+}
+
+.mytheme .v-horizontal > .v-spacing {
+	width: 8px;
+}
+
+.mytheme .mymargins.v-margin-left {
+	padding-left: 10px;
+}
+
+.mytheme .mymargins.v-margin-right {
+	padding-right: 10px;
+}
+
+.mytheme .mymargins.v-margin-top {
+	padding-top: 20px;
+}
+
+.mytheme .mymargins.v-margin-bottom {
+	padding-bottom: 60px;
+}
