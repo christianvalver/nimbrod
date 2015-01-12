@@ -8,8 +8,11 @@ import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.data.util.filter.SimpleStringFilter;
+import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.event.ShortcutListener;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
+import com.vaadin.shared.ui.ShortCutConstants;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.HorizontalLayout;
@@ -85,9 +88,26 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 		establecerEventoBotonBuscarDetalle();
 		establecerEventosBotonSeleccionar();
 		establecerEventoBotonAnadirDetalle();
-		
+		iniciarEventoDeleteDetalles();
 		
 		//
+	}
+	protected void iniciarEventoDeleteDetalles() {
+		tablaFacturaDetalle.addShortcutListener(new ShortcutListener("",KeyCode.DELETE,new int[10]) {
+			private static final long serialVersionUID = -2490988066925106941L;
+
+			@Override
+			public void handleAction(Object sender, Object target) {
+				Object seleccionado=tablaFacturaDetalle.getValue();
+				if(getKeyCode()==KeyCode.DELETE){					
+				//fuenteDatosAnadirDetalle.removeItemProperty(seleccionado);
+					fuenteDatosFacturaDetalles.removeItem(seleccionado);										
+				}
+				
+				
+			}
+		});
+		
 	}
 	protected void establecerEventoBotonAnadirDetalle() {
 	 botonAnadirDetalle.addClickListener(new ClickListener() {
@@ -249,8 +269,27 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 		
 		
 	}
-	public void establecerEventoRegistrar() {
+	public final void establecerEventoRegistrar() {
+		eventoPreRegistro();
+		eventoRegistrar();
+		eventoPostRegistro();
+	}
+	protected void eventoPostRegistro() {
+		//vaciar objeto factura
+		//establecer el nuevo numero de factura
+				
+	}
+	protected void eventoRegistrar() {
 		// TODO Auto-generated method stub
+		
+	}
+	protected void eventoPreRegistro() {
+		try {
+			binderFactura.commit();
+		} catch (CommitException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	protected void establecerEventoBusqueda() {
