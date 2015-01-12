@@ -32,10 +32,7 @@ public class MyVaadinUI extends UI
         layout.setMargin(true);
         setContent(layout);
         ComponenteLayedOutBaseFactura f=new ComponenteLayedOutBaseFactura(true,false);
-        layout.addComponent(f);
-        
-      
+        layout.addComponent(f);            
       //  layout.addComponent(button);
     }
-
 }

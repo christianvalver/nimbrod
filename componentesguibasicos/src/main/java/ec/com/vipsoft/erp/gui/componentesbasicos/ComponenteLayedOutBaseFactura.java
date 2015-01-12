@@ -2,6 +2,7 @@ package ec.com.vipsoft.erp.gui.componentesbasicos;
 
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 public class ComponenteLayedOutBaseFactura extends ComponenteBaseFacturaBiding {
@@ -38,20 +39,14 @@ public class ComponenteLayedOutBaseFactura extends ComponenteBaseFacturaBiding {
 		
 		linea2=new HorizontalLayout();
 		linea2.setSizeFull();		
-		VerticalLayout layoutCatalogo=new VerticalLayout();
-		//layoutCatalogo.setSpacing(true);
-		layoutCatalogo.setSizeFull();
-		layoutCatalogo.setSpacing(true);
-		HorizontalLayout lch1=new HorizontalLayout();
-		lch1.addComponent(labelbienEconomico);
-		lch1.addComponent(campoBusquedaProducto);
+		
+		
 		//lch1.setMargin(true);
-		layoutCatalogo.addComponent(lch1);
-		layoutCatalogo.addComponent(tablaCatalogoProductos);
+		
 		
 		HorizontalLayout layoutSubtotales=new HorizontalLayout();
-		layoutSubtotales.setWidth("100%");
-		//layoutSubtotales.setSpacing(true);
+		//layoutSubtotales.setWidth("100%");
+		layoutSubtotales.setSpacing(true);		
 		layoutSubtotales.addComponent(labelSutotaliva0);
 		layoutSubtotales.addComponent(subtotalIva0);
 		layoutSubtotales.addComponent(labelSutotaliva12);
@@ -69,16 +64,27 @@ public class ComponenteLayedOutBaseFactura extends ComponenteBaseFacturaBiding {
 		HorizontalLayout layoutBotones=new HorizontalLayout();
 		
 		layoutBotones.setSpacing(true);
+		layoutBotones.addComponent(botonBuscarDetalles);
+		labelDescripcionNuevoDetalle.setWidth("380px");
+		labelDescripcionNuevoDetalle.setStyleName("h3");
+		layoutBotones.addComponent(labelDescripcionNuevoDetalle);
+		layoutBotones.addComponent(labelValorUnitarioAnadirDetalle);
+		layoutBotones.addComponent(campoAsignarValorUnitario);
+		layoutBotones.addComponent(botonAnadirDetalle);
+		Label lespacio=new Label("");
+		lespacio.setWidth("80px");
+		layoutBotones.addComponent(lespacio);
 		layoutBotones.addComponent(botonRegistrar);
 		layoutBotones.addComponent(botonCancelar);
 		layoutDerecho.addComponent(layoutBotones);
 		layoutDerecho.addComponent(tablaFacturaDetalle);
 		layoutDerecho.addComponent(layoutSubtotales);
-		layoutDerecho.setComponentAlignment(layoutBotones,Alignment.MIDDLE_RIGHT);
-		linea2.addComponent(layoutCatalogo);
+		layoutDerecho.setComponentAlignment(layoutSubtotales, Alignment.MIDDLE_RIGHT);
+		layoutDerecho.setComponentAlignment(layoutBotones,Alignment.MIDDLE_CENTER);
+		//linea2.addComponent(layoutCatalogo);
 		linea2.addComponent(layoutDerecho);
-		linea2.setExpandRatio(layoutCatalogo, 2);
-		linea2.setExpandRatio(layoutDerecho,7);
+		//linea2.setExpandRatio(layoutCatalogo, 2);
+		//linea2.setExpandRatio(layoutDerecho,7);
 		
 		//linea2.setWidth("100%");
 		addComponent(linea1);

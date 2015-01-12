@@ -13,6 +13,7 @@ public class CampoTelefono extends TextField {
 		super();
 		setInputPrompt("04-2610680");
 		setDescription("ingrese el número telefónico");
+		setNullRepresentation("");
 	}
 
 }

@@ -13,6 +13,7 @@ public class CampoTextoBusqueda extends TextField {
 		setInputPrompt("busqueda");
 		setDescription("escriba su búsqueda aqui");
 		setWidth("180px");
+		setNullRepresentation("");
 	}
 
 

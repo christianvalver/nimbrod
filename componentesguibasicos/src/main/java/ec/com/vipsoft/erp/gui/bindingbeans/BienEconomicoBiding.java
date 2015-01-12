@@ -2,7 +2,8 @@ package ec.com.vipsoft.erp.gui.bindingbeans;
 
 import java.io.Serializable;
 
-public class BienEconomicoBiding implements Serializable,Comparable<BienEconomicoBiding>{
+public class BienEconomicoBiding implements Serializable,
+		Comparable<BienEconomicoBiding> {
 	/**
 	 * 
 	 */
@@ -11,7 +12,18 @@ public class BienEconomicoBiding implements Serializable,Comparable<BienEconomic
 	private String descripcion;
 	private String codigoIVA;
 	private String codigoICE;
-	
+
+	public BienEconomicoBiding(String codigo, String descripcion) {
+		this();
+		setCodigo(codigo);
+		setDescripcion(descripcion);
+		setCodigoIVA("2");
+	}
+
+	public BienEconomicoBiding() {
+
+	}
+
 	public String getCodigo() {
 		return codigo;
 	}
@@ -46,9 +58,9 @@ public class BienEconomicoBiding implements Serializable,Comparable<BienEconomic
 
 	@Override
 	public int compareTo(BienEconomicoBiding o) {
-		int retorno=descripcion.compareTo(o.descripcion);
-		if(retorno==0){
-			retorno=codigo.compareTo(o.codigo);
+		int retorno = descripcion.compareTo(o.descripcion);
+		if (retorno == 0) {
+			retorno = codigo.compareTo(o.codigo);
 		}
 		return retorno;
 	}

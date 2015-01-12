@@ -12,6 +12,7 @@ public class FacturaDetalleBinding implements Serializable{
 	protected BigDecimal cantidad;
 	protected BigDecimal valorUnitario;
 	protected BigDecimal descuento;
+	protected String descripcion;
 	protected BigDecimal valorTotal;
 	protected BigDecimal iva;
 	protected BigDecimal ice;
@@ -69,5 +70,11 @@ public class FacturaDetalleBinding implements Serializable{
 	public void setIce(BigDecimal ice) {
 		this.ice = ice;
 	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}	
 	
 }

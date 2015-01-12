@@ -12,6 +12,7 @@ public class CampoNumeroComprobante extends TextField {
 		setDescription("ingrese el N° de comprobante");
 		setMaxLength(17);
 		setWidth("165px");
+		setNullRepresentation("");
 		//setRequired(true);
 	}
 }

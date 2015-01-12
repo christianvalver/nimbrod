@@ -13,7 +13,8 @@ public class CampoDireccion extends TextField {
 		super();
 		setInputPrompt("Cdla. Guayacanes Mz 158 solar 5");
 		setDescription("ingrese la dirección");
-		setWidth("290px");
+		setWidth("270px");
+		setNullRepresentation("");
 	}
 	
 

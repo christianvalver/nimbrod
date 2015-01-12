@@ -3,13 +3,17 @@ package ec.com.vipsoft.erp.gui.bindingbeans;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class FacturaBiding implements Serializable{
 
 	private static final long serialVersionUID = -8237183958880944232L;
-	private String numeroComprobante;
-	private ClienteBiding cliente;
+	protected String numeroComprobante;
+	
 	protected List<FacturaDetalleBinding>detalles;
 	protected BigDecimal subtotalIva0;
 	protected BigDecimal subtotalIva12;
@@ -17,7 +21,20 @@ public class FacturaBiding implements Serializable{
 	protected BigDecimal ice;
 	protected BigDecimal descuento;
 	protected BigDecimal totalFactura;
+	protected Date fechaFactura;
+	protected String direccion;
+	protected String razonSocial;
+	@NotNull
+	@Pattern(regexp="[0-9]{13,13}")
+	protected String ruc;
+	protected String secuenciaFactura;
 	
+	public Date getFechaFactura() {
+		return fechaFactura;
+	}
+	public void setFechaFactura(Date fechaFactura) {
+		this.fechaFactura = fechaFactura;
+	}
 	public BigDecimal getSubtotalIva0() {
 		return subtotalIva0;
 	}
@@ -60,12 +77,7 @@ public class FacturaBiding implements Serializable{
 	public void setDetalles(List<FacturaDetalleBinding> detalles) {
 		this.detalles = detalles;
 	}
-	public ClienteBiding getCliente() {
-		return cliente;
-	}
-	public void setCliente(ClienteBiding cliente) {
-		this.cliente = cliente;
-	}
+
 	public FacturaBiding() {
 		super();
 		detalles=new ArrayList<FacturaDetalleBinding>();
@@ -75,7 +87,8 @@ public class FacturaBiding implements Serializable{
 		iva12=BigDecimal.ZERO;
 		subtotalIva12=BigDecimal.ZERO;
 		totalFactura=BigDecimal.ZERO;
-		cliente=new ClienteBiding();
+	
+		fechaFactura=new Date();
 		
 	}
 	public String getNumeroComprobante() {
@@ -86,6 +99,30 @@ public class FacturaBiding implements Serializable{
 	}
 	public void setNumeroComprobante(String numeroComprobante) {
 		this.numeroComprobante = numeroComprobante;
+	}
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	public String getRazonSocial() {
+		return razonSocial;
+	}
+	public void setRazonSocial(String razonSocial) {
+		this.razonSocial = razonSocial;
+	}
+	public String getRuc() {
+		return ruc;
+	}
+	public void setRuc(String ruc) {
+		this.ruc = ruc;
+	}
+	public String getSecuenciaFactura() {
+		return secuenciaFactura;
+	}
+	public void setSecuenciaFactura(String secuenciaFactura) {
+		this.secuenciaFactura = secuenciaFactura;
 	}	
 	
 }

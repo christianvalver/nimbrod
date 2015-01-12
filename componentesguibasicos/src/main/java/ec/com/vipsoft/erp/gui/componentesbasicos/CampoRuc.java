@@ -1,5 +1,6 @@
 package ec.com.vipsoft.erp.gui.componentesbasicos;
 
+
 import com.vaadin.ui.TextField;
 
 public class CampoRuc extends TextField{
@@ -14,6 +15,8 @@ public class CampoRuc extends TextField{
 		setDescription("ingrese un ruc o cédula válido");
 		setMaxLength(13);
 		setWidth("140px");
+		setNullRepresentation("");
+//		addValidator(new javax.validation.Validator);
 		
 	}
 

@@ -13,6 +13,7 @@ public class ClienteBiding implements Serializable{
 	protected String telefono;
 	protected String email;
 	
+	
 	public String getEmail() {
 		return email;
 	}

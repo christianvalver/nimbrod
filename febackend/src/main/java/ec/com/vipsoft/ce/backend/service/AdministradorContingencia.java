@@ -28,7 +28,7 @@ import ec.com.vipsoft.ce.backend.model.Entidad;
 public class AdministradorContingencia {
     @PersistenceContext
     EntityManager em;
-    @Schedule(dayOfMonth = "*",dayOfWeek = "*", hour = "*",minute = "*",year = "*",persistent = true)
+    @Schedule(dayOfMonth = "*",dayOfWeek = "*", hour = "*",minute = "*",year = "*",second="0",persistent=true)
     public void verificarFinIndisponibilidadRegistrada(){
         LOG.info("verificando indisponiblidad registrada");
         Query q=em.createQuery("select c from CalendarioIndisponibilidad c where c.terminado=1");

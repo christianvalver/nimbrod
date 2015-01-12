@@ -12,7 +12,8 @@ public class CampoRazonSocial extends TextField{
 		super();
 		setInputPrompt("Roberto Gomez Bolaños");
 		setDescription("Ingrese la razón social");
-		setWidth("290px");
+		setWidth("270px");
+		setNullRepresentation("");
 	}
 
 }

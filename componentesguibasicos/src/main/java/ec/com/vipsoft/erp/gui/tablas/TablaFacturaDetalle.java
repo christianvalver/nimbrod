@@ -11,8 +11,11 @@ public class TablaFacturaDetalle extends Table{
 		setMultiSelect(true);
 		setWidth("100%");
 		setSizeFull();
-		setPageLength(9);
+		setPageLength(8);
 		setColumnCollapsingAllowed(true);
+		setEditable(true);		
+	//	setNullRepresentation("");
+		
 	}
 
 }

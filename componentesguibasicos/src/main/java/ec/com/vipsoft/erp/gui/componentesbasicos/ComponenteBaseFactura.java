@@ -2,6 +2,7 @@ package ec.com.vipsoft.erp.gui.componentesbasicos;
 
 import java.util.Date;
 
+import com.vaadin.data.fieldgroup.PropertyId;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
@@ -13,15 +14,22 @@ public class ComponenteBaseFactura extends VerticalLayout {
 
 	private static final long serialVersionUID = -5401955638845168794L;
 
+	@PropertyId("ruc")
 	protected CampoRuc camporuc;
+	@PropertyId("razonSocial")
 	protected CampoRazonSocial campoRazonSocial;
+	@PropertyId("direccion")
 	protected CampoDireccion campoDireccion;
+	@PropertyId("telefono")
 	protected CampoTelefono campoTelefono;
 	protected Label labelRuc;
 	protected Label labelRazonSocial;
 	protected Label labelbienEconomico;	
+	@PropertyId("numeroComprobante")
 	protected CampoNumeroComprobante campoNumeroComprobante;
+	@PropertyId("fechaFactura")
 	protected DateField campoFecha;
+	
 	protected Label labelDireccion;
 	protected Label labelTelefono;
 	protected BotonBuscar botonBuscarCliente;
@@ -31,16 +39,27 @@ public class ComponenteBaseFactura extends VerticalLayout {
 	protected TablaFacturaDetalle tablaFacturaDetalle;
 	protected TablaBienEconomico tablaCatalogoProductos;
 	protected CampoTextoBusqueda campoBusquedaProducto;
-	protected CampoDinero subtotalIva0;
-	protected CampoDinero subtotalIva12;
-	protected CampoDinero iva12;
-	protected CampoDinero ice;
-	protected CampoDinero total;
+	@PropertyId("subtotalIva0")
+	protected CampoDineroLectura subtotalIva0;
+	@PropertyId("subtotalIva12")
+	protected CampoDineroLectura subtotalIva12;
+	@PropertyId("iva12")
+	protected CampoDineroLectura iva12;
+	@PropertyId("ice")
+	protected CampoDineroLectura ice;
+	@PropertyId("totalFactura")
+	protected CampoDineroLectura total;
 	protected Label labelSutotaliva0;
 	protected Label labelSutotaliva12;
 	protected Label labelIva12;
 	protected Label labelICE;
 	protected Label labelTotal;
+	protected BotonBuscar botonBuscarDetalles;
+	protected CampoDinero campoAsignarValorUnitario;
+	protected BotonAnadir botonAnadirDetalle;
+	protected Label labelValorUnitarioAnadirDetalle;
+	protected Label labelAnadirDetalle;
+	protected Label labelDescripcionNuevoDetalle;		
 		
 	public ComponenteBaseFactura() {
 		super();
@@ -59,6 +78,8 @@ public class ComponenteBaseFactura extends VerticalLayout {
 		botonBuscarCliente = new BotonBuscar();
 		botonRegistrar = new BotonRegistrar();
 		botonCancelar = new BotonCancelar();
+		botonBuscarDetalles=new BotonBuscar();
+		botonAnadirDetalle=new BotonAnadir();
 	}
 
 	protected void iniciarCampos() {
@@ -73,11 +94,13 @@ public class ComponenteBaseFactura extends VerticalLayout {
 		campoFecha.setValue(new Date());
 		campoFecha.setWidth("150px");
 		campoBusquedaProducto=new CampoTextoBusqueda();
-		subtotalIva0=new CampoDinero();
-		subtotalIva12=new CampoDinero();
-		iva12=new CampoDinero();
-		ice=new CampoDinero();
-		total=new CampoDinero();
+		subtotalIva0=new CampoDineroLectura();
+		subtotalIva12=new CampoDineroLectura();
+		iva12=new CampoDineroLectura();
+		ice=new CampoDineroLectura();
+		total=new CampoDineroLectura();
+		campoAsignarValorUnitario=new CampoDinero();
+		
 	
 	}
 
@@ -92,7 +115,11 @@ public class ComponenteBaseFactura extends VerticalLayout {
 		labelSutotaliva12=new Label("Subtotal 12%");
 		labelIva12=new Label("IVA 12%");
 		labelICE=new Label("ICE");
-		labelTotal=new Label("Total");		
+		labelTotal=new Label("Total");	
+		labelValorUnitarioAnadirDetalle=new Label("V. Unitario");
+		labelDescripcionNuevoDetalle=new Label("jkkhkjhkj");
+		labelAnadirDetalle=new Label("Añadir Detalle");
+		
 	}
 
 	public CampoRuc getCamporuc() {

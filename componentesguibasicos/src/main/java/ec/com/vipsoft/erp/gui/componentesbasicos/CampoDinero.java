@@ -8,6 +8,7 @@ public class CampoDinero extends TextField {
 	public CampoDinero() {
 		super();
 		setWidth("90px");
+		setNullRepresentation("");
 	}
 
 
