@@ -6,6 +6,7 @@ import com.vaadin.data.fieldgroup.PropertyId;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 
 import ec.com.vipsoft.erp.gui.tablas.TablaBienEconomico;
 import ec.com.vipsoft.erp.gui.tablas.TablaFacturaDetalle;
@@ -40,15 +41,15 @@ public class ComponenteBaseFactura extends VerticalLayout {
 	protected TablaBienEconomico tablaCatalogoProductos;
 	protected CampoTextoBusqueda campoBusquedaProducto;
 	@PropertyId("subtotalIva0")
-	protected CampoDineroLectura subtotalIva0;
+	protected Label subtotalIva0;
 	@PropertyId("subtotalIva12")
-	protected CampoDineroLectura subtotalIva12;
+	protected Label subtotalIva12;
 	@PropertyId("iva12")
-	protected CampoDineroLectura iva12;
+	protected Label iva12;
 	@PropertyId("ice")
-	protected CampoDineroLectura ice;
+	protected Label ice;
 	@PropertyId("totalFactura")
-	protected CampoDineroLectura total;
+	protected Label total;
 	protected Label labelSutotaliva0;
 	protected Label labelSutotaliva12;
 	protected Label labelIva12;
@@ -61,7 +62,7 @@ public class ComponenteBaseFactura extends VerticalLayout {
 	protected Label labelAnadirDetalle;	
 	protected Label labelDescripcionNuevoDetalle;
 	protected BotonRegistrar botonSeleccionar;
-
+	protected Window ventanapopup;
 	protected Label labelAnadirDetalleCantidad;
 
 	protected CampoSpinnerEntero campoAnadirDetalleCantidad;		
@@ -100,11 +101,11 @@ public class ComponenteBaseFactura extends VerticalLayout {
 		campoFecha.setValue(new Date());
 		campoFecha.setWidth("150px");
 		campoBusquedaProducto=new CampoTextoBusqueda();
-		subtotalIva0=new CampoDineroLectura();
-		subtotalIva12=new CampoDineroLectura();
-		iva12=new CampoDineroLectura();
-		ice=new CampoDineroLectura();
-		total=new CampoDineroLectura();
+		subtotalIva0=new Label("");
+		subtotalIva12=new Label("");
+		iva12=new Label("");
+		ice=new Label("");
+		total=new Label("");
 		campoAsignarValorUnitario=new CampoDinero();
 		campoAnadirDetalleCantidad=new CampoSpinnerEntero();
 	

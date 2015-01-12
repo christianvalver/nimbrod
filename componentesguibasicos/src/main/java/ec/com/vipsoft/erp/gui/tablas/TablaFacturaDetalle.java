@@ -13,7 +13,7 @@ public class TablaFacturaDetalle extends Table{
 		setSizeFull();
 		setPageLength(8);
 		setColumnCollapsingAllowed(true);
-		setEditable(true);		
+		setEditable(false);		
 	//	setNullRepresentation("");
 		
 	}

@@ -26,12 +26,15 @@ public class FacturaDetalleBinding implements Serializable{
 		this.codigo = codigo;
 	}
 	public String getCodigoIva() {
+		if(codigoIva==null){
+			codigoIva=new String("2");
+		}
 		return codigoIva;
 	}
 	public void setCodigoIva(String codigoIva) {
 		this.codigoIva = codigoIva;
 	}
-	public String getCodigoIce() {
+	public String getCodigoIce() {		
 		return codigoIce;
 	}
 	public void setCodigoIce(String codigoIce) {
@@ -78,6 +81,15 @@ public class FacturaDetalleBinding implements Serializable{
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public void calcularValorTotal() {		
+		if((cantidad!=null)&&(valorUnitario!=null)){
+			valorTotal=cantidad.multiply(valorUnitario);
+			if(descuento!=null){
+				valorTotal=valorTotal.subtract(descuento);
+			}
+		}
+		
 	}	
 	
 }

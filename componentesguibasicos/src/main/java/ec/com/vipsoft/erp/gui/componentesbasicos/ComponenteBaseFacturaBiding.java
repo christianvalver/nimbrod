@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import com.vaadin.data.Container.Filterable;
 import com.vaadin.data.fieldgroup.FieldGroup;
+import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.data.util.filter.SimpleStringFilter;
@@ -11,10 +12,12 @@ import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Table.Align;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Table.Align;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
+import com.vaadin.ui.Window.CloseEvent;
+import com.vaadin.ui.Window.CloseListener;
 
 import ec.com.vipsoft.erp.gui.bindingbeans.BienEconomicoBiding;
 import ec.com.vipsoft.erp.gui.bindingbeans.FacturaBiding;
@@ -33,6 +36,7 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 	private HorizontalLayout lch1;
 	protected BeanItemContainer<FacturaDetalleBinding>fuenteDatosFacturaDetalles;
 	protected BeanItemContainer<BienEconomicoBiding>fuenteDatosCatalogoBienEconomicos;
+	protected FieldGroup binderFactura;
 	
 
 	public ComponenteBaseFacturaBiding() {
@@ -53,10 +57,6 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 		fuenteDatosFacturaDetalles=new BeanItemContainer<FacturaDetalleBinding>(FacturaDetalleBinding.class);
 		fuenteDatosCatalogoBienEconomicos=new BeanItemContainer<BienEconomicoBiding>(BienEconomicoBiding.class);
 		iniciarDatos();
-		detalleFacturaBiding=new FacturaDetalleBinding();
-		
-		
-		
 		//campoBusquedaProducto.setPropertyDataSource(detalleFacturaBiding.getDescripcion());
 		tablaCatalogoProductos.setContainerDataSource(fuenteDatosCatalogoBienEconomicos);
 		tablaFacturaDetalle.setContainerDataSource(fuenteDatosFacturaDetalles);
@@ -84,17 +84,84 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 		establecerEventoRegistrar();
 		establecerEventoBotonBuscarDetalle();
 		establecerEventosBotonSeleccionar();
+		establecerEventoBotonAnadirDetalle();
 		
 		
 		//
 	}
+	protected void establecerEventoBotonAnadirDetalle() {
+	 botonAnadirDetalle.addClickListener(new ClickListener() {
+
+		private static final long serialVersionUID = -8051028686378126248L;
+		@Override
+		public void buttonClick(ClickEvent event) {
+			BigDecimal cantidad=new BigDecimal((String)campoAnadirDetalleCantidad.getValue());
+			if(cantidad!=null){
+				BigDecimal precioU=new BigDecimal((String)campoAsignarValorUnitario.getValue());
+				if(precioU!=null){
+					if(cantidad.doubleValue()>0){
+						facturaDetalleBindingTransparente.setCantidad(cantidad);
+						facturaDetalleBindingTransparente.setValorUnitario(precioU);
+						FacturaDetalleBinding nuevoDetalle=new FacturaDetalleBinding();
+						nuevoDetalle.setCodigo(facturaDetalleBindingTransparente.getCodigo());
+						nuevoDetalle.setDescripcion(facturaDetalleBindingTransparente.getDescripcion());
+						nuevoDetalle.setCodigoIva(facturaDetalleBindingTransparente.getCodigoIva());
+						nuevoDetalle.setCantidad(facturaDetalleBindingTransparente.getCantidad());					
+						if(facturaDetalleBindingTransparente.getCodigoIce()!=null){
+							nuevoDetalle.setCodigoIce(nuevoDetalle.getCodigoIce());
+						}
+						nuevoDetalle.setValorUnitario(precioU);
+						nuevoDetalle.calcularValorTotal();
+						facturaBiding.anadirFacturaDetalle(nuevoDetalle);
+						fuenteDatosFacturaDetalles.addBean(nuevoDetalle);	
+						facturaDetalleBindingTransparente.setCodigo("");
+						facturaDetalleBindingTransparente.setDescripcion("");
+						labelDescripcionNuevoDetalle.setValue("");
+						campoAsignarValorUnitario.setValue("");
+						campoAnadirDetalleCantidad.setValue("");
+						try {
+							binderFactura.commit();
+						} catch (CommitException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						subtotalIva0.setValue(String.valueOf(facturaBiding.getSubtotalIva0()));
+						subtotalIva12.setValue(String.valueOf(facturaBiding.getSubtotalIva12()));
+						iva12.setValue(String.valueOf(facturaBiding.getIva12()));
+						ice.setValue(String.valueOf(facturaBiding.getIce()));
+						total.setValue(String.valueOf(facturaBiding.getTotalFactura()));
+					}
+				}
+			}
+			
+		}
+	});
+		
+	}
 	protected void establecerEventosBotonSeleccionar() {
-	
+	botonSeleccionar.addClickListener(new ClickListener() {
+		private static final long serialVersionUID = -8051028686378126248L;
+		@Override
+		public void buttonClick(ClickEvent event) {		
+			Object selectedI=tablaCatalogoProductos.getValue();
+			if(selectedI!=null){
+				facturaDetalleBindingTransparente.setCodigo((String)tablaCatalogoProductos.getContainerProperty(selectedI, "codigo").getValue());
+				facturaDetalleBindingTransparente.setDescripcion((String)tablaCatalogoProductos.getContainerProperty(selectedI, "descripcion").getValue());
+				labelDescripcionNuevoDetalle.setValue(facturaDetalleBindingTransparente.getDescripcion());
+			}else{
+				facturaDetalleBindingTransparente.setCodigo("");
+				facturaDetalleBindingTransparente.setDescripcion("");
+				labelDescripcionNuevoDetalle.setValue("");
+			}
+			ventanapopup.close();
+		}
+	});
 		//labelDescripcionNuevoDetalle
 	}
 	protected void establecerEventoBotonBuscarDetalle() {
 		botonBuscarDetalles.addClickListener(new ClickListener() {
-			private static final long serialVersionUID = 5640416676339470645L;			
+			private static final long serialVersionUID = 5640416676339470645L;
+						
 
 			@Override
 			public void buttonClick(ClickEvent event) {
@@ -105,12 +172,30 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 				facturaDetalleBindingTransparente.setDescripcion("");
 				facturaDetalleBindingTransparente.setValorUnitario(BigDecimal.ZERO);
 				facturaDetalleBindingTransparente.setValorTotal(BigDecimal.ZERO);
-				Window ventanapopup=new Window();				
+				ventanapopup=new Window();				
 				ventanapopup.setModal(true);
 				ventanapopup.setWidth("600px");				
 				layoutCatalogo.setMargin(true);				
 				ventanapopup.setContent(layoutCatalogo);
 				ventanapopup.center();
+				ventanapopup.addCloseListener(new CloseListener() {
+					private static final long serialVersionUID = -5621564420749933514L;
+
+					@Override
+					public void windowClose(CloseEvent e) {
+						Object selectedI=tablaCatalogoProductos.getValue();
+						if(selectedI!=null){
+							facturaDetalleBindingTransparente.setCodigo((String)tablaCatalogoProductos.getContainerProperty(selectedI, "codigo").getValue());
+							facturaDetalleBindingTransparente.setDescripcion((String)tablaCatalogoProductos.getContainerProperty(selectedI, "descripcion").getValue());
+							labelDescripcionNuevoDetalle.setValue(facturaDetalleBindingTransparente.getDescripcion());
+						}else{
+							facturaDetalleBindingTransparente.setCodigo("");
+							facturaDetalleBindingTransparente.setDescripcion("");
+							labelDescripcionNuevoDetalle.setValue("");
+						}
+						
+					}
+				});
 				//ventanapopup.set
 				getUI().addWindow(ventanapopup);								
 			}
@@ -120,9 +205,14 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 		facturaBiding=new FacturaBiding();
 		facturaBiding.setDireccion("la calle");
 		beanITemFactura=new BeanItem<FacturaBiding>(facturaBiding);
-		FieldGroup binder=new FieldGroup();
-		binder.setItemDataSource(beanITemFactura);
-		binder.bindMemberFields(this);
+		binderFactura=new FieldGroup();
+		binderFactura.setItemDataSource(beanITemFactura);
+		//binderFactura.bind(subtotalIva0, "subtotalIva0");
+		//binderFactura.bind(subtotalIva12, "subtotalIva12");
+		//binderFactura.bind(iva12, "iva12");
+		//binderFactura.bind(ice, "ice");
+		//binderFactura.bind(total, "totalFactura");
+		
 	}
 	public void limpiarPantalla(){
 		//fuenteDatosFacturaDetalles.removeAllItems();		
@@ -136,6 +226,11 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 		iva12.setValue(ceroEnString);
 		ice.setValue(ceroEnString);
 		total.setValue(ceroEnString);
+		labelDescripcionNuevoDetalle.setValue("");
+		campoAnadirDetalleCantidad.setValue("");
+		campoAsignarValorUnitario.setValue("");
+		facturaDetalleBindingTransparente.setCodigo("");
+		facturaDetalleBindingTransparente.setDescripcion("");
 		labelDescripcionNuevoDetalle.setValue("");
 		cancelarAntesFinalizar();
 	}
