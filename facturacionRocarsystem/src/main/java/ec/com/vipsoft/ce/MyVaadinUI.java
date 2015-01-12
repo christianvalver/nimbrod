@@ -40,23 +40,27 @@ public class MyVaadinUI extends UI
     	try {
     		
 			Class.forName("org.postgresql.Driver");
-			final Connection con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/rocarsystem","chrisvv","palita");
+			
 			final VerticalLayout layout = new VerticalLayout();
 	        layout.setMargin(true);
 	        setContent(layout);
 	        ComponenteLayedOutBaseFactura f=new ComponenteLayedOutBaseFactura(true,false){
 	        	@Override
 	        	protected void eventoRegistrar() {
+	        		System.out.println("Hola "+facturaBiding.getDetalles().size());
 	        		
 	        	}
 	        	@Override
 	        	public void iniciarDatos() {
 	        		try {
+	        			Connection con=DriverManager.getConnection("jdbc:postgresql://localhost:5432/rocarsystem","chrisvv","palita");
 						Statement stm=con.createStatement();
 						ResultSet rst=stm.executeQuery("select codigo,descripcion from bieneconomico order by descripcion");
 						while(rst.next()){
 							fuenteDatosCatalogoBienEconomicos.addBean(new BienEconomicoBiding(rst.getString("codigo"),rst.getString("descripcion")));
 						}
+						rst.close();
+						con.close();
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -67,9 +71,6 @@ public class MyVaadinUI extends UI
 	        
 	        layout.addComponent(f);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

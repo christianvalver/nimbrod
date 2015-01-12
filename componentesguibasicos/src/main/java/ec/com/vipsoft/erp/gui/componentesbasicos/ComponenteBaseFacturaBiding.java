@@ -235,7 +235,13 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 		
 	}
 	public void limpiarPantalla(){
-		//fuenteDatosFacturaDetalles.removeAllItems();		
+		fuenteDatosFacturaDetalles.removeAllItems();
+		facturaBiding.getDetalles().clear();
+		facturaBiding.setSubtotalIva0(BigDecimal.ZERO);
+		facturaBiding.setSubtotalIva12(BigDecimal.ZERO);
+		facturaBiding.setIce(BigDecimal.ZERO);
+		facturaBiding.setIva12(BigDecimal.ZERO);
+		facturaBiding.setTotalFactura(BigDecimal.ZERO);
 		campoBusquedaProducto.setValue("");
 		campoDireccion.setValue("");
 		campoRazonSocial.setValue("");
@@ -270,9 +276,20 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 		
 	}
 	public final void establecerEventoRegistrar() {
-		eventoPreRegistro();
-		eventoRegistrar();
-		eventoPostRegistro();
+		botonRegistrar.addClickListener(new ClickListener() {			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 4648442493107588558L;
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				eventoPreRegistro();
+				eventoRegistrar();
+				eventoPostRegistro();				
+			}
+		});
+		
 	}
 	protected void eventoPostRegistro() {
 		//vaciar objeto factura
