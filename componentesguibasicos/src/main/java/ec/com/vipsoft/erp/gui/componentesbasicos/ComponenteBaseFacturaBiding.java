@@ -1,5 +1,7 @@
 package ec.com.vipsoft.erp.gui.componentesbasicos;
 
+import java.math.BigDecimal;
+
 import com.vaadin.data.Container.Filterable;
 import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.BeanItem;
@@ -23,23 +25,26 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 	private static final long serialVersionUID = 4563293643137130124L;
 	private BienEconomicoBiding bienEconomicoBiding1;
 	protected FacturaBiding facturaBiding;
-	protected FacturaDetalleBinding facturaDetalleBinding1;
+	protected FacturaDetalleBinding facturaDetalleBindingTransparente;
 	protected BeanItem<FacturaBiding>beanITemFactura;
 	protected FacturaDetalleBinding detalleFacturaBiding;
-	protected BeanItem<FacturaDetalleBinding>beanItemFacturaDetalle;
+	protected BeanItem<FacturaDetalleBinding>fuenteDatosAnadirDetalle;
 	private VerticalLayout layoutCatalogo;
 	private HorizontalLayout lch1;
-	
+	protected BeanItemContainer<FacturaDetalleBinding>fuenteDatosFacturaDetalles;
+	protected BeanItemContainer<BienEconomicoBiding>fuenteDatosCatalogoBienEconomicos;
 	
 
 	public ComponenteBaseFacturaBiding() {
-		super();		
+		super();
+		facturaDetalleBindingTransparente=new FacturaDetalleBinding();
 		establecerBindingFactura();
 		layoutCatalogo=new VerticalLayout();
 		lch1=new HorizontalLayout();
 		lch1.setSpacing(true);
 		lch1.addComponent(labelbienEconomico);
 		lch1.addComponent(campoBusquedaProducto);
+		lch1.addComponent(botonSeleccionar);
 		layoutCatalogo.addComponent(lch1);
 		layoutCatalogo.addComponent(tablaCatalogoProductos);
 		//layoutCatalogo.setSpacing(true);
@@ -48,6 +53,11 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 		fuenteDatosFacturaDetalles=new BeanItemContainer<FacturaDetalleBinding>(FacturaDetalleBinding.class);
 		fuenteDatosCatalogoBienEconomicos=new BeanItemContainer<BienEconomicoBiding>(BienEconomicoBiding.class);
 		iniciarDatos();
+		detalleFacturaBiding=new FacturaDetalleBinding();
+		
+		
+		
+		//campoBusquedaProducto.setPropertyDataSource(detalleFacturaBiding.getDescripcion());
 		tablaCatalogoProductos.setContainerDataSource(fuenteDatosCatalogoBienEconomicos);
 		tablaFacturaDetalle.setContainerDataSource(fuenteDatosFacturaDetalles);
 		tablaCatalogoProductos.setColumnCollapsed("codigoIVA", true);
@@ -73,9 +83,14 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 		establecerEventoCancelar();
 		establecerEventoRegistrar();
 		establecerEventoBotonBuscarDetalle();
+		establecerEventosBotonSeleccionar();
 		
 		
 		//
+	}
+	protected void establecerEventosBotonSeleccionar() {
+	
+		//labelDescripcionNuevoDetalle
 	}
 	protected void establecerEventoBotonBuscarDetalle() {
 		botonBuscarDetalles.addClickListener(new ClickListener() {
@@ -83,16 +98,21 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 
 			@Override
 			public void buttonClick(ClickEvent event) {
+				labelDescripcionNuevoDetalle.setValue("");
+				//campoBusquedaProducto.setValue("");
+				facturaDetalleBindingTransparente.setCantidad(BigDecimal.ONE);
+				facturaDetalleBindingTransparente.setCodigo("");
+				facturaDetalleBindingTransparente.setDescripcion("");
+				facturaDetalleBindingTransparente.setValorUnitario(BigDecimal.ZERO);
+				facturaDetalleBindingTransparente.setValorTotal(BigDecimal.ZERO);
 				Window ventanapopup=new Window();				
 				ventanapopup.setModal(true);
-				ventanapopup.setWidth("400px");				
+				ventanapopup.setWidth("600px");				
 				layoutCatalogo.setMargin(true);				
 				ventanapopup.setContent(layoutCatalogo);
 				ventanapopup.center();
 				//ventanapopup.set
-				getUI().addWindow(ventanapopup);
-				
-				
+				getUI().addWindow(ventanapopup);								
 			}
 		});
 	}
@@ -105,7 +125,7 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 		binder.bindMemberFields(this);
 	}
 	public void limpiarPantalla(){
-		fuenteDatosFacturaDetalles.removeAllItems();		
+		//fuenteDatosFacturaDetalles.removeAllItems();		
 		campoBusquedaProducto.setValue("");
 		campoDireccion.setValue("");
 		campoRazonSocial.setValue("");
@@ -116,6 +136,7 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 		iva12.setValue(ceroEnString);
 		ice.setValue(ceroEnString);
 		total.setValue(ceroEnString);
+		labelDescripcionNuevoDetalle.setValue("");
 		cancelarAntesFinalizar();
 	}
 	public void cancelarAntesFinalizar(){
@@ -173,10 +194,8 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 		fuenteDatosCatalogoBienEconomicos.addBean(bienEconomicoBiding1);
 		fuenteDatosCatalogoBienEconomicos.addBean(new BienEconomicoBiding("002","juantio"));
 		fuenteDatosCatalogoBienEconomicos.addBean(new BienEconomicoBiding("003","juanfrancisco"));
-		facturaDetalleBinding1 = new FacturaDetalleBinding();
-		facturaDetalleBinding1.setCodigo("001");		
-		fuenteDatosFacturaDetalles.addBean(facturaDetalleBinding1);		
+		
+				
 	}
-	protected BeanItemContainer<FacturaDetalleBinding>fuenteDatosFacturaDetalles;
-	protected BeanItemContainer<BienEconomicoBiding>fuenteDatosCatalogoBienEconomicos;
+	
 }

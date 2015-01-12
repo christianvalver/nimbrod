@@ -58,8 +58,13 @@ public class ComponenteBaseFactura extends VerticalLayout {
 	protected CampoDinero campoAsignarValorUnitario;
 	protected BotonAnadir botonAnadirDetalle;
 	protected Label labelValorUnitarioAnadirDetalle;
-	protected Label labelAnadirDetalle;
-	protected Label labelDescripcionNuevoDetalle;		
+	protected Label labelAnadirDetalle;	
+	protected Label labelDescripcionNuevoDetalle;
+	protected BotonRegistrar botonSeleccionar;
+
+	protected Label labelAnadirDetalleCantidad;
+
+	protected CampoSpinnerEntero campoAnadirDetalleCantidad;		
 		
 	public ComponenteBaseFactura() {
 		super();
@@ -80,6 +85,7 @@ public class ComponenteBaseFactura extends VerticalLayout {
 		botonCancelar = new BotonCancelar();
 		botonBuscarDetalles=new BotonBuscar();
 		botonAnadirDetalle=new BotonAnadir();
+		botonSeleccionar=new BotonRegistrar();
 	}
 
 	protected void iniciarCampos() {
@@ -100,7 +106,7 @@ public class ComponenteBaseFactura extends VerticalLayout {
 		ice=new CampoDineroLectura();
 		total=new CampoDineroLectura();
 		campoAsignarValorUnitario=new CampoDinero();
-		
+		campoAnadirDetalleCantidad=new CampoSpinnerEntero();
 	
 	}
 
@@ -117,8 +123,9 @@ public class ComponenteBaseFactura extends VerticalLayout {
 		labelICE=new Label("ICE");
 		labelTotal=new Label("Total");	
 		labelValorUnitarioAnadirDetalle=new Label("V. Unitario");
-		labelDescripcionNuevoDetalle=new Label("jkkhkjhkj");
+		labelDescripcionNuevoDetalle=new Label("");
 		labelAnadirDetalle=new Label("Añadir Detalle");
+		labelAnadirDetalleCantidad=new Label("Cantidad");
 		
 	}
 

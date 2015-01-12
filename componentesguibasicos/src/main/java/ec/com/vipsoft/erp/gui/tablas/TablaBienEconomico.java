@@ -6,7 +6,7 @@ public class TablaBienEconomico extends Table {
 	public TablaBienEconomico() {
 		super();
 		setSelectable(true);
-		setMultiSelect(true);
+		setMultiSelect(false);
 		setWidth("100%");
 		setSizeFull();
 		setPageLength(11);

@@ -3,9 +3,12 @@ package ec.com.vipsoft.erp.gui.bindingbeans;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import com.vaadin.data.fieldgroup.PropertyId;
+
 public class FacturaDetalleBinding implements Serializable{
 
 	private static final long serialVersionUID = -4148940559183031447L;
+	
 	protected String codigo;
 	protected String codigoIva;
 	protected String codigoIce;

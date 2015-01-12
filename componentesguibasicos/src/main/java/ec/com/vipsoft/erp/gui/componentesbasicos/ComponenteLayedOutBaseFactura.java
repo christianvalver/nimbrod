@@ -65,9 +65,11 @@ public class ComponenteLayedOutBaseFactura extends ComponenteBaseFacturaBiding {
 		
 		layoutBotones.setSpacing(true);
 		layoutBotones.addComponent(botonBuscarDetalles);
-		labelDescripcionNuevoDetalle.setWidth("380px");
+		labelDescripcionNuevoDetalle.setWidth("300px");
 		labelDescripcionNuevoDetalle.setStyleName("h3");
-		layoutBotones.addComponent(labelDescripcionNuevoDetalle);
+		layoutBotones.addComponent(labelDescripcionNuevoDetalle);		
+		layoutBotones.addComponent(labelAnadirDetalleCantidad);
+		layoutBotones.addComponent(campoAnadirDetalleCantidad);
 		layoutBotones.addComponent(labelValorUnitarioAnadirDetalle);
 		layoutBotones.addComponent(campoAsignarValorUnitario);
 		layoutBotones.addComponent(botonAnadirDetalle);
