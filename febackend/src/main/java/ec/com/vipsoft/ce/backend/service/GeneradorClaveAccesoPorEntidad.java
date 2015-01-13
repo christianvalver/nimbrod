@@ -35,7 +35,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
 	   List<Entidad>listadoEntidad=q.getResultList();
-	   if(!listadoEntidad.isEmpty()){
+	   if(listadoEntidad.isEmpty()){
 		   retorno.append("entidad o ruc no registrado");
 	   }else{
 		   Entidad entidad=em.find(Entidad.class, listadoEntidad.get(0).getId());
@@ -71,7 +71,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
 	   List<Entidad>listadoEntidad=q.getResultList();
-	   if(!listadoEntidad.isEmpty()){
+	   if(listadoEntidad.isEmpty()){
 		   retorno.append("entidad o ruc no registrado");
 	   }else{
 		   Entidad entidad=em.find(Entidad.class, listadoEntidad.get(0).getId());
@@ -105,7 +105,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
 	   List<Entidad>listadoEntidad=q.getResultList();
-	   if(!listadoEntidad.isEmpty()){
+	   if(listadoEntidad.isEmpty()){
 		   retorno.append("entidad o ruc no registrado");
 	   }else{
 		   Entidad entidad=em.find(Entidad.class, listadoEntidad.get(0).getId());
@@ -143,7 +143,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
 	   List<Entidad>listadoEntidad=q.getResultList();
-	   if(!listadoEntidad.isEmpty()){
+	   if(listadoEntidad.isEmpty()){
 		   retorno.append("entidad o ruc no registrado");
 	   }else{
 		   Entidad entidad=em.find(Entidad.class, listadoEntidad.get(0).getId());
@@ -177,7 +177,7 @@ public class GeneradorClaveAccesoPorEntidad implements Serializable
 	   Query q=em.createQuery("select e from Entidad e where e.ruc=?1");
 	   q.setParameter(1, ruc);
 	   List<Entidad>listadoEntidad=q.getResultList();
-	   if(!listadoEntidad.isEmpty()){
+	   if(listadoEntidad.isEmpty()){
 		   retorno.append("entidad o ruc no registrado");
 	   }else{
 		   Entidad entidad=em.find(Entidad.class, listadoEntidad.get(0).getId());

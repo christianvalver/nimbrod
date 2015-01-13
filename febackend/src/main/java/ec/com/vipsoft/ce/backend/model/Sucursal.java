@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,11 +32,21 @@ public class Sucursal implements Serializable {
 	@Version
 	@Column(name = "version")
 	private int version;
+	private String direccion;
+	
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
 	private Integer numeroSucursal;
 	@ManyToOne
 	private Entidad entidad;
 
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private List<PuntoEmision> puntosEmision;
 
 	public List<PuntoEmision> getPuntosEmision() {

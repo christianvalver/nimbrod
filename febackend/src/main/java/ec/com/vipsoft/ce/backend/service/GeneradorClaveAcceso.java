@@ -41,8 +41,8 @@ public class GeneradorClaveAcceso implements Serializable {
 		} else {
 			sb.append("2");
 		}
-		sb.append(sucursal);
-		sb.append(puntoEmision);
+		sb.append(completarConCerosIzquierda(sucursal, 3));
+		sb.append(completarConCerosIzquierda(puntoEmision, 3));
 		sb.append(completarConCerosIzquierda(numerocomprobante, 9));
 		sb.append(completarConCerosIzquierda(secuenciaca, 8));
 		sb.append("1");

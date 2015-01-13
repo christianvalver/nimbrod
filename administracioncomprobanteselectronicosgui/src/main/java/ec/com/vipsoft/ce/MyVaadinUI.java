@@ -13,8 +13,9 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-import ec.com.vipsoft.ce.clientapi.AdministradorEntidad;
-import ec.com.vipsoft.ce.clientapi.AdministradorEntidadService;
+import ec.com.vipsoft.ce.wsclient.AdministracionEntidad;
+import ec.com.vipsoft.ce.wsclient.AdministracionEntidadService;
+import ec.com.vipsoft.ce.wsclient.Entidad;
 
 @Theme("mytheme")
 @SuppressWarnings("serial")
@@ -44,9 +45,22 @@ public class MyVaadinUI extends UI
         Button button = new Button("Click Me");
         button.addClickListener(new Button.ClickListener() {
             public void buttonClick(ClickEvent event) {
-            	AdministradorEntidadService servicio=new AdministradorEntidadService();
-            	AdministradorEntidad port = servicio.getAdministradorEntidadPort();
-            	port.crearEntidad(ruc.getValue(), razonSocial.getValue(), nombreComercial.getValue(), 2);
+            	AdministracionEntidadService servicio=new AdministracionEntidadService();
+            	AdministracionEntidad port = servicio.getAdministracionEntidadPort();
+            	Entidad entidad=new Entidad();
+            	entidad.setRuc("1719739477001");
+            	entidad.setRazonSocial("SISTEMAS DE SALUD ROCARSYSTEM S.A.");
+            	entidad.setContribuyenteEspecial(true);
+            	entidad.setResolucionContibuyenteEspecial("826 del 22/12/2009");
+            	entidad.setDireccion("Urdesa Central Todos los Santos 201 y Circunvalación Sur");
+            	entidad.setFacturaEnPruebas(true);
+            	entidad.setComprobanteRetencionEnPruebas(true);
+            	entidad.setGuiaRemisionEnPruebas(true);
+            	entidad.setNotaCreditoEnPruebas(true);
+            	entidad.setNotaDebitioEnPruebas(true);
+            	port.registrarEntidad("mariateniauncorderito", entidad, 2);
+            	
+//            	port.crearEntidad(ruc.getValue(), razonSocial.getValue(), nombreComercial.getValue(), 2);
             	layout.addComponent(new Label("Thank you for clicking"));
             }
         });

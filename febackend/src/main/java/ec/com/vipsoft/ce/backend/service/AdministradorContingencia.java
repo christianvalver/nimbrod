@@ -28,7 +28,7 @@ import ec.com.vipsoft.ce.backend.model.Entidad;
 public class AdministradorContingencia {
     @PersistenceContext
     EntityManager em;
-    @Schedule(dayOfMonth = "*",dayOfWeek = "*", hour = "*",minute = "*",year = "*",second="0",persistent=true)
+    @Schedule(dayOfMonth = "*",dayOfWeek = "*", hour = "*",minute = "*",year = "*",second="0")
     public void verificarFinIndisponibilidadRegistrada(){
         LOG.info("verificando indisponiblidad registrada");
         Query q=em.createQuery("select c from CalendarioIndisponibilidad c where c.terminado=1");
@@ -48,7 +48,8 @@ public class AdministradorContingencia {
     private static final Logger LOG = Logger.getLogger(AdministradorContingencia.class.getName());
     public boolean estamosEnContingenciaProgramada() {
         boolean retorno = false;
-        Query q = em.createQuery("select c from CalendarioIndisponibilidad c where c.terminado=false");
+        Query q = em.createQuery("select c from CalendarioIndisponibilidad c where c.terminado=?1");
+        q.setParameter(1, 1);
         List<CalendarioIndisponibilidad> listado = q.getResultList();
         if (!listado.isEmpty()) {
             for (CalendarioIndisponibilidad c : listado) {

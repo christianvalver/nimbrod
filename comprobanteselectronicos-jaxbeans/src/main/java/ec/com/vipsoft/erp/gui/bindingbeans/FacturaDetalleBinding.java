@@ -2,8 +2,7 @@ package ec.com.vipsoft.erp.gui.bindingbeans;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-
-import com.vaadin.data.fieldgroup.PropertyId;
+import java.math.RoundingMode;
 
 public class FacturaDetalleBinding implements Serializable{
 
@@ -90,6 +89,13 @@ public class FacturaDetalleBinding implements Serializable{
 			}
 		}
 		
+	}
+	public BigDecimal calculaBaeImponible() {
+		BigDecimal baseImponible=BigDecimal.ZERO;
+		if(codigoIva.equalsIgnoreCase("2")){
+			baseImponible=cantidad.multiply(valorUnitario);
+		}
+		return baseImponible.setScale(2, RoundingMode.HALF_DOWN);
 	}	
 	
 }

@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import ec.com.vipsoft.erp.gui.componentesbasicos.CampoSpinnerEntero;
 
 public class FacturaBiding implements Serializable{
 
 	private static final long serialVersionUID = -8237183958880944232L;
-	protected String numeroComprobante;
-	
+	private String rucEmisor;
+	private String direccionMatriz;
+	private String razonSocialEmisor;
+	private Boolean contribuyenteEspecial;
+	private String resolucionContribuyenteEspecial;
+	protected String numeroComprobante;	
 	protected List<FacturaDetalleBinding>detalles;
 	protected BigDecimal subtotalIva0;
 	protected BigDecimal subtotalIva12;
@@ -26,12 +26,69 @@ public class FacturaBiding implements Serializable{
 	protected BigDecimal totalFactura;
 	protected Date fechaFactura;
 	protected String direccion;
-	protected String razonSocial;
-	@NotNull
-	@Pattern(regexp="[0-9]{13,13}")
+	protected String razonSocial;	
 	protected String ruc;
 	protected String secuenciaFactura;
 	
+	
+	
+//	public Factura obtenerFactura(Entidad e){
+//		ObjectFactory factoria=new ObjectFactory();
+//		Factura facturaRetorno=factoria.createFactura();
+//		facturaRetorno.setId("comprobante");
+//		facturaRetorno.setVersion("1.1.0");
+//		
+//		InfoTributaria infoTributaria = factoria.createInfoTributaria();
+//		if(esPruebas){
+//			infoTributaria.setAmbiente("1");
+//		}else{
+//			infoTributaria.setAmbiente("2");
+//		}
+//		infoTributaria.setClaveAcceso(codigoAcceso);
+//		infoTributaria.setCodDoc("01");
+//		
+//		infoTributaria.setDirMatriz(administradorEntidad.buscarDireccionMatriz(ruc));
+//		infoTributaria.setNombreComercial(administradorEntidad.buscarNombreComerical(ruc));
+//		infoTributaria.setRazonSocial(administradorEntidad.buscarRazonSocial(ruc));
+//		infoTributaria.setRuc(ruc);
+//		infoTributaria.setTipoEmision("1");
+//		infoTributaria.setEstab(_factura.calcularEstablecimiento());
+//		infoTributaria.setPtoEmi(_factura.calcularPuntoEmision());
+//		infoTributaria.setSecuencial(_factura.calcularSecuencial());			
+//		facturaRetorno.setInfoTributaria(infoTributaria);
+//				
+//	}
+	public String getRucEmisor() {
+		return rucEmisor;
+	}
+	public void setRucEmisor(String rucEmisor) {
+		this.rucEmisor = rucEmisor;
+	}
+	public String getDireccionMatriz() {
+		return direccionMatriz;
+	}
+	public void setDireccionMatriz(String direccionMatriz) {
+		this.direccionMatriz = direccionMatriz;
+	}
+	public String getRazonSocialEmisor() {
+		return razonSocialEmisor;
+	}
+	public void setRazonSocialEmisor(String razonSocialEmisor) {
+		this.razonSocialEmisor = razonSocialEmisor;
+	}
+	public Boolean getContribuyenteEspecial() {
+		return contribuyenteEspecial;
+	}
+	public void setContribuyenteEspecial(Boolean contribuyenteEspecial) {
+		this.contribuyenteEspecial = contribuyenteEspecial;
+	}
+	public String getResolucionContribuyenteEspecial() {
+		return resolucionContribuyenteEspecial;
+	}
+	public void setResolucionContribuyenteEspecial(
+			String resolucionContribuyenteEspecial) {
+		this.resolucionContribuyenteEspecial = resolucionContribuyenteEspecial;
+	}
 	public Date getFechaFactura() {
 		return fechaFactura;
 	}
@@ -151,5 +208,17 @@ public class FacturaBiding implements Serializable{
 		elTotal=elTotal.add(iva12).add(ice);
 		setTotalFactura(elTotal);
 		detalles.add(nuevoDetalle);			
+	}
+	public String getCodigoTipoIdentificacion() {
+		if(ruc.length()==13){
+			return "04";
+		}
+		if(ruc.length()==10){
+			return "05";
+		}
+		if((ruc.length()==13)&&(ruc.equalsIgnoreCase("9999999999999"))){
+			return "07";
+		}		
+		return "06";
 	}
 }

@@ -72,7 +72,11 @@
 			<version>${vaadin.version}</version>
 			<scope>compile</scope>
 		</dependency>
-  
+  		<dependency>
+  			<groupId>ec.com.vipsoft</groupId>
+  			<artifactId>comprobanteselectronicos-jaxbeans</artifactId>
+  			<version>1.0</version>
+  		</dependency>
   
   </dependencies>
 </project>

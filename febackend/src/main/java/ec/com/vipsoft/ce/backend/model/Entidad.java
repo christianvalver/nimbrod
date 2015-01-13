@@ -28,17 +28,33 @@ public class Entidad implements Serializable {
 	@Column
 	private String direccion;
 	
+	@Column(name="pruebasf")
 	private boolean facturaEnPruebas;
+	@Column(name="pruebasnc")
 	private boolean notaCreditoEnPruebas;
+	@Column(name="pruebasnd")
 	private boolean notaDebitioEnPruebas;
+	@Column(name="pruebasgr")
 	private boolean guiaRemisionEnPruebas;
+	@Column(name="pruebascr")
 	private boolean comprobanteRetencionEnPruebas;
+	@Column(name="obcontabilidad")
+	private boolean obligadoContabilidad;
+	
+	private boolean contribuyenteEspecial;
+	@Column(name="resolucion")
+	private String resolucionContibuyenteEspecial;
 	private String ruc;
 	private String nombreComercial;
+	@Column(name="secf")
 	private Integer secuenciacafactura;
+	@Column(name="secnd")
 	private Integer secuenciacanotadebito;
+	@Column(name="senc")
 	private Integer secuenciacanotacredito;
+	@Column(name="segr")
 	private Integer secuenciacaguiaremision;
+	@Column(name="seret")
 	private Integer secuenciacaretencion;
 	public Integer siguienteCAFactura(){
 		return secuenciacafactura++;	
@@ -218,5 +234,26 @@ public class Entidad implements Serializable {
 			boolean comprobanteRetencionEnPruebas) {
 		this.comprobanteRetencionEnPruebas = comprobanteRetencionEnPruebas;
 	}
+	public boolean isObligadoContabilidad() {
+		return obligadoContabilidad;
+	}
+	public void setObligadoContabilidad(boolean obligadoContabilidad) {
+		this.obligadoContabilidad = obligadoContabilidad;
+	}
+	public boolean isContribuyenteEspecial() {
+		return contribuyenteEspecial;
+	}
+	public void setContribuyenteEspecial(boolean contribuyenteEspecial) {
+		this.contribuyenteEspecial = contribuyenteEspecial;
+	}
+	public String getResolucionContibuyenteEspecial() {
+		return resolucionContibuyenteEspecial;
+	}
+	public void setResolucionContibuyenteEspecial(
+			String resolucionContibuyenteEspecial) {
+		this.resolucionContibuyenteEspecial = resolucionContibuyenteEspecial;
+	}
+
+	
 	
 }

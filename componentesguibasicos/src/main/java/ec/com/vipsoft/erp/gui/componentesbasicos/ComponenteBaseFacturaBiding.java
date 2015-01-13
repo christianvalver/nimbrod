@@ -8,11 +8,10 @@ import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.data.util.filter.SimpleStringFilter;
-import com.vaadin.event.ShortcutAction.KeyCode;
-import com.vaadin.event.ShortcutListener;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
-import com.vaadin.shared.ui.ShortCutConstants;
+import com.vaadin.event.ShortcutAction.KeyCode;
+import com.vaadin.event.ShortcutListener;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.HorizontalLayout;
@@ -284,9 +283,21 @@ public class ComponenteBaseFacturaBiding extends ComponenteBaseFactura{
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				eventoPreRegistro();
-				eventoRegistrar();
-				eventoPostRegistro();				
+				try {
+					binderFactura.commit();
+					facturaBiding.setRuc(camporuc.getValue());
+					facturaBiding.setDireccion(campoDireccion.getValue());
+					facturaBiding.setRazonSocial(campoRazonSocial.getValue());
+					facturaBiding.setNumeroComprobante(campoNumeroComprobante.getValue());
+					
+					eventoPreRegistro();
+					eventoRegistrar();
+					eventoPostRegistro();
+				} catch (CommitException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+								
 			}
 		});
 		
